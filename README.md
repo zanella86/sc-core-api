@@ -22,6 +22,7 @@ https://github.com/zanella86/SportConnection
 - Gradle 7.6.1
 - IntelliJ IDEA Community Edition (2022.2.1)
 - Spring Framework (Java 17+)
+- Swagger
 
 ---
 
@@ -63,6 +64,12 @@ Adicione os parâmetros para conexão:
 > MYSQL_USERNAME=meu_usuario;MYSQL_PASSWORD=minha_senha
 
 ![Intellij-bootRun-Arguments](docs/intellij-bootrun-arguments.PNG)
+
+### Swagger
+
+Documentação disponível em: http://localhost:8080/sc-core/swagger-ui/index.html#/
+
+![Swagger - Home](docs/swagger.PNG)
 
 ---
 
