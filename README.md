@@ -21,6 +21,7 @@ https://github.com/zanella86/SportConnection
 - Git / Github
 - Gradle 7.6.1
 - IntelliJ IDEA Community Edition (2022.2.1)
+- MySQL Workbench 8.0 CE
 - Spring Framework (Java 17+)
 - Swagger
 
@@ -34,6 +35,7 @@ https://github.com/zanella86/SportConnection
 - **Spring Web:** Para disponibilização dos _endpoints_ (Tomcat embutido).
 - **Spring Data JPA:** Persistência via _Hibernate_.
 - **Spring Security:** Para gerenciamento de acessos (_Basic Authentication_).
+  - **JWT:** Para autenticação com _Token_ (_Header Authorization_).
   - **OAuth2 Client:** Para integração do _Spring Boot_ aos recursos do _OpenID_ do _Spring Security_.
 
 <u>Outros:</u>
@@ -59,9 +61,9 @@ https://github.com/zanella86/SportConnection
 
 ### IDE
 
-Adicione os parâmetros para conexão:
+Adicione as variáveis de ambiente e ajuste os valores conforme as configurações do seu ambiente:
 
-> MYSQL_USERNAME=meu_usuario;MYSQL_PASSWORD=minha_senha
+> MYSQL_USERNAME=meu_usuario;MYSQL_PASSWORD=minha_senha;JWT_SECRET=meu_codigo_secreto_com_mais_de_56_caracteres_de_comprimento
 
 ![Intellij-bootRun-Arguments](docs/intellij-bootrun-arguments.PNG)
 
@@ -75,4 +77,5 @@ Documentação disponível em: http://localhost:8080/sc-core/swagger-ui/index.ht
 
 # REFERÊNCIAS
 
-- [Spring Initializr](https://start.spring.io/;)
+- [Spring Initializr](https://start.spring.io/)
+- [OAuth 2.0 Login](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html)
