@@ -26,4 +26,4 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
-  expirationInSeconds: 60
+  expirationInSeconds: 60000
