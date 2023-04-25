@@ -32,7 +32,6 @@ public class EventsController {
     @GetMapping
     public ResponseEntity<Object> list(@RequestHeader Map<String, String> headers) {
         var events = service.list();
-        if(events.isEmpty()) throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         return ResponseEntity.ok(events);
     }
 
