@@ -4,16 +4,19 @@ import com.sportconnection.sccoreapi.dto.RegisterUserDTO;
 import com.sportconnection.sccoreapi.dto.UserDTO;
 import com.sportconnection.sccoreapi.entity.UserEntity;
 import com.sportconnection.sccoreapi.mapper.UserMapper;
+import com.sportconnection.sccoreapi.repository.ProfileRepository;
 import com.sportconnection.sccoreapi.security.dto.AuthDTO;
 import com.sportconnection.sccoreapi.security.dto.JwtDTO;
 import com.sportconnection.sccoreapi.repository.UserRepository;
 import com.sportconnection.sccoreapi.security.jwt.SecretJwt;
+import com.sportconnection.sccoreapi.service.ProfileService;
 import com.sportconnection.sccoreapi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -23,18 +26,21 @@ public class UserServiceImpl implements UserService {
     private SecretJwt secretJwt;
     private UserMapper userMapper;
     private UserRepository userRepository;
+    private ProfileService profileService;
     private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(AuthenticationManager authenticationManager,
                            SecretJwt secretJwt,
                            UserMapper userMapper,
                            UserRepository userRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                           ProfileService profileService) {
         this.authenticationManager = authenticationManager;
         this.secretJwt = secretJwt;
         this.userMapper = userMapper;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.profileService = profileService;
     }
 
     @Override
@@ -55,6 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public UserDTO create(RegisterUserDTO registerUserDTO) {
         UserEntity checkUserEntity = this.userRepository.findFirstByUsername(registerUserDTO.username());
         if(checkUserEntity != null && checkUserEntity.getUsername().equals(registerUserDTO.username())) {
@@ -65,6 +72,9 @@ public class UserServiceImpl implements UserService {
         userEntity.setPassword(this.passwordEncoder.encode(registerUserDTO.password()));
 
         UserEntity savedUserEntity = this.userRepository.save(userEntity);
+
+        profileService.createDefaultProfile(savedUserEntity.getId());
+
         return this.userMapper.convertToDTO(savedUserEntity);
     }
 

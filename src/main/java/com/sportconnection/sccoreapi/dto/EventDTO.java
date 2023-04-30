@@ -17,4 +17,6 @@ public class EventDTO {
     private EventEnum typeEvent;
     private String icon;
     private Boolean paid;
+    private Long profileId;
+    private String username;
 }

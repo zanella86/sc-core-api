@@ -1,8 +1,7 @@
 package com.sportconnection.sccoreapi.entity;
 
 import com.sportconnection.sccoreapi.config.JpaConfig;
-import com.sportconnection.sccoreapi.dto.enums.EventEnum;
-import com.sportconnection.sccoreapi.dto.enums.FrequencyEnum;
+import com.sportconnection.sccoreapi.dto.enums.LevelEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,14 +10,16 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "TB_EVENT", catalog = JpaConfig.CATALOG)
-public class EventEntity implements Serializable {
+@Data
+@Table(name = "TB_PROFILE", catalog = JpaConfig.CATALOG)
+public class ProfileEntity implements Serializable {
 
     @Serial
     private static final Long serialVersionUID = 1L;
@@ -31,27 +32,27 @@ public class EventEntity implements Serializable {
     private String name;
 
     @Column
-    private String description;
+    private String phone;
 
     @Column
-    private FrequencyEnum frequency;
+    private LevelEnum level;
 
     @Column
-    private String time;
+    private int score;
 
     @Column
-    private String address;
+    private int eventsParticipated;
 
     @Column
-    private EventEnum typeEvent;
+    private int achievements;
 
     @Column
-    private String icon;
+    private int friends;
 
-    @Column
-    private Boolean paid;
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="profile")
+    private Set<EventEntity> events = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_profile")
-    private ProfileEntity profile;
+    @OneToOne
+    private UserEntity user;
+
 }

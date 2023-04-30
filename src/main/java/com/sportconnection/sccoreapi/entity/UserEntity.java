@@ -1,13 +1,16 @@
 package com.sportconnection.sccoreapi.entity;
 
 import com.sportconnection.sccoreapi.config.JpaConfig;
-import com.sportconnection.sccoreapi.security.type.RoleAccessType;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -29,8 +32,5 @@ public class UserEntity implements Serializable {
 
     @Column
     private String password;
-
-    /*@Column
-    private List<RoleAccessType> roles;*/
 
 }
