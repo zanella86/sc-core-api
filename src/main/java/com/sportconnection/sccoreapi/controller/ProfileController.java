@@ -25,10 +25,16 @@ public class ProfileController {
         var response = service.create(profileDTO);
         return ResponseEntity.created(URI.create("/event/" + response.getId())).body(response);
     }
-*/
+
     @GetMapping("{id}")
     public ResponseEntity<ProfileDTO> get(@PathVariable Long id, @RequestHeader Map<String, String> headers) {
         var profileDTO = service.get(id);
+        return ResponseEntity.ok().body(profileDTO);
+    }*/
+
+    @GetMapping("{username}")
+    public ResponseEntity<ProfileDTO> get(@PathVariable String username, @RequestHeader Map<String, String> headers) {
+        var profileDTO = service.getByUsername(username);
         return ResponseEntity.ok().body(profileDTO);
     }
 

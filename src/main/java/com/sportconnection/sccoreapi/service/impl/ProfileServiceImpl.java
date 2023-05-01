@@ -81,6 +81,13 @@ public class ProfileServiceImpl implements ProfileService {
         repository.delete(entity.get());
     }
 
+    @Override
+    public ProfileDTO getByUsername(String username) {
+        var entity = repository.findByUsername(username);
+        entity.orElseThrow(() -> new NoSuchElementException());
+        return mapper.convertToDTO(entity.get());
+    }
+
     private ProfileEntity getProfileEntityWithDefaultValues(UserEntity user) {
         return ProfileEntity.builder()
                 .name(user.getUsername())

@@ -11,5 +11,6 @@ public interface ProfileService {
     ProfileDTO get(Long id);
     List<ProfileDTO> list();
     void delete(Long id);
+    ProfileDTO getByUsername(String username);
 
 }
