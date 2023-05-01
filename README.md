@@ -36,7 +36,7 @@ https://github.com/zanella86/SportConnection
 - **Spring Data JPA:** Persistência via _Hibernate_.
 - **Spring Security:** Para gerenciamento de acessos (_Basic Authentication_).
   - **JWT:** Para autenticação com _Token_ (_Header Authorization_).
-  - **OAuth2 Client:** Para integração do _Spring Boot_ aos recursos do _OpenID_ do _Spring Security_.
+  <!-- - **OAuth2 Client:** Para integração do _Spring Boot_ aos recursos do _OpenID_ do _Spring Security_. -->
 
 <u>Outros:</u>
 
@@ -73,14 +73,14 @@ Documentação disponível em: http://localhost:8080/sc-core/swagger-ui/index.ht
 
 ![Swagger - Home](docs/swagger.png)
 
-Como fazer para usar?
+#### Como fazer para usar?
 
 ![Swagger - Requests](docs/swagger_auth.png)
 
-1. Os requests referente a profile-controller e events-controller são necessários autorização no header.
-2. O botão Authorize é onde definimos o token que será utilizado em todas as requisições que é necessário o Authorization
+1. Os _requests_ referente a `profile-controller` e `events-controller` necessitam de autorização no _header_.
+2. O botão `Authorize` deve ser utilizado para definir o _token_ que será utilizado em todas as requisições que necessitam de autorização (parâmetro **Authorization** no _header_).
 
-Como autorizar?
+#### Como autorizar?
 
 ![Swagger - Execução Request](docs/swagger_auth_try_token.png)
 
@@ -95,9 +95,9 @@ Como autorizar?
 
 ![Swagger - Authorize](docs/swagger_auth_token_fill.png)
 
-0. Clicar no botão `Authorize` para abrir o popup da imagem anterior
-1. Colar o valor do token (copiado do passo anterior)
-2. Clicar em `Authorize`
+1. Clicar no botão `Authorize` para abrir o popup da imagem anterior
+2. Colar o valor do token (copiado do passo anterior)
+3. Clicar em `Authorize`
 
 Pronto Authorization configurada, agora é só testar os outros requests.
 
@@ -106,4 +106,7 @@ Pronto Authorization configurada, agora é só testar os outros requests.
 # REFERÊNCIAS
 
 - [Spring Initializr](https://start.spring.io/)
-- [OAuth 2.0 Login](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html)
+- [Profº Fabio Tadashi](https://github.com/fabiotadashi/1SCJR-travel/tree/main/web)
+- [Profº Eduardo Galego](https://github.com/prof-eduardo-galego/fiap-spring-rest)
+- [Profº Rafael Matsuyama](https://github.com/rafaelmatsuyama/FIAP-2022-SCJ-JavaPersistence)
+<!-- - [OAuth 2.0 Login](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html) -->

@@ -10,6 +10,4 @@ public interface UserService {
     JwtDTO auth(AuthDTO authDTO);
     UserDTO create(RegisterUserDTO registerUserDTO);
 
-
-
 }

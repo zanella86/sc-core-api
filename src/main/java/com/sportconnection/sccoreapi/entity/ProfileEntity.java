@@ -49,6 +49,7 @@ public class ProfileEntity implements Serializable {
     @Column
     private int friends;
 
+    @Builder.Default
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="profile")
     private Set<EventEntity> events = new HashSet<>();
 

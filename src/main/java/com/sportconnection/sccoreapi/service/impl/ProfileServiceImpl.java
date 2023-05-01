@@ -93,11 +93,12 @@ public class ProfileServiceImpl implements ProfileService {
                 .name(user.getUsername())
                 .phone("")
                 .score(0)
-                .level(LevelEnum.BROWN)
+                .level(LevelEnum.BRONZE)
                 .eventsParticipated(0)
                 .achievements(0)
                 .friends(0)
                 .user(user)
                 .build();
     }
+
 }
