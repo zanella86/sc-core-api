@@ -71,7 +71,35 @@ Adicione as variáveis de ambiente e ajuste os valores conforme as configuraçõ
 
 Documentação disponível em: http://localhost:8080/sc-core/swagger-ui/index.html#/
 
-![Swagger - Home](docs/swagger.PNG)
+![Swagger - Home](docs/swagger.png)
+
+Como fazer para usar?
+
+![Swagger - Requests](docs/swagger_auth.png)
+
+1. Os requests referente a profile-controller e events-controller são necessários autorização no header.
+2. O botão Authorize é onde definimos o token que será utilizado em todas as requisições que é necessário o Authorization
+
+Como autorizar?
+
+![Swagger - Execução Request](docs/swagger_auth_try_token.png)
+
+1. Clique em `Try it out` para habilitar edição dos campos
+
+![Swagger - Execução e Resultado Request](docs/swagger_auth_try_result.png)
+
+1. Preencha os campos com os dados (DETALHE: Se não tiver login cadastrado, realize uma chamada no request users/register)
+2. Clique no botão Execute
+3. Status Code do retorno da chamada
+4. O Response body da chamada. Copiar o conteúdo da propriedade `token`
+
+![Swagger - Authorize](docs/swagger_auth_token_fill.png)
+
+0. Clicar no botão `Authorize` para abrir o popup da imagem anterior
+1. Colar o valor do token (copiado do passo anterior)
+2. Clicar em `Authorize`
+
+Pronto Authorization configurada, agora é só testar os outros requests.
 
 ---
 
