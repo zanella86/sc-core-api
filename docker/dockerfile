@@ -1,0 +1,29 @@
+# test
+#FROM eclipse-temurin:17-jdk-alpine
+#WORKDIR /app
+#COPY build/libs/sc-core-api-1.0.0-RELEASE.war .
+#ENTRYPOINT ["java","-jar", "/app/sc-core-api-1.0.0-RELEASE.war", "org.springframework.boot.loader.WarLauncher"]
+
+# Build stage
+FROM gradle:latest AS build
+ARG WORKSPACE=/workspace/app
+COPY . ${WORKSPACE}
+WORKDIR ${WORKSPACE}
+RUN --mount=type=cache,target=${WORKSPACE}/.gradle ${WORKSPACE}/gradlew clean build -exclude-task test
+RUN mkdir -p build/dependency && (cd build/dependency; jar -xf ../libs/*-RELEASE.war)
+
+# Package stage
+FROM eclipse-temurin:17-jdk-alpine
+ARG WORKSPACE=/workspace/app
+ARG DEPENDENCY=${WORKSPACE}/build/dependency
+WORKDIR ${WORKSPACE}
+#VOLUME /tmp
+COPY --from=build ${DEPENDENCY}/META-INF ${WORKSPACE}/META-INF
+COPY --from=build ${DEPENDENCY}/WEB-INF/lib ${WORKSPACE}/lib
+COPY --from=build ${DEPENDENCY}/WEB-INF/lib-provided ${WORKSPACE}/lib-provided
+COPY --from=build ${DEPENDENCY}/WEB-INF/classes ${WORKSPACE}
+COPY --from=build ${DEPENDENCY}/org ${WORKSPACE}/org
+EXPOSE 8080
+#ENTRYPOINT ["java","-cp",".:/workspace/app/lib/*", "com.sportconnection.sccoreapi.ScCoreApiApplication"]
+#ENTRYPOINT ["java","-cp",".:/workspace/app/lib/*:/workspace/app/lib-provided/*", "org.springframework.boot.loader.WarLauncher"]
+ENTRYPOINT ["java","-cp",".:/workspace/app/lib/*:/workspace/app/lib-provided/*", "-DMYSQL_USERNAME=root -DMYSQL_PASSWORD=admin -DJWT_SECRET=s3cr373jwts3cr373jwts3cr373jwts3cr373jwts3cr373jwts3cr373jwt", "org.springframework.boot.loader.WarLauncher"]

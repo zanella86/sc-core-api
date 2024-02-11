@@ -24,6 +24,7 @@ https://github.com/zanella86/SportConnection
 - MySQL Workbench 8.0 CE
 - Spring Framework (Java 17+)
 - Swagger
+- Docker 4.20.1
 
 ---
 
@@ -101,6 +102,10 @@ Documentação disponível em: http://localhost:8080/sc-core/swagger-ui/index.ht
 
 Pronto Authorization configurada, agora é só testar os outros requests.
 
+### Docker
+
+
+
 ---
 
 # REFERÊNCIAS
@@ -109,4 +114,8 @@ Pronto Authorization configurada, agora é só testar os outros requests.
 - [Profº Fabio Tadashi](https://github.com/fabiotadashi/1SCJR-travel/tree/main/web)
 - [Profº Eduardo Galego](https://github.com/prof-eduardo-galego/fiap-spring-rest)
 - [Profº Rafael Matsuyama](https://github.com/rafaelmatsuyama/FIAP-2022-SCJ-JavaPersistence)
+- [Docker - jdk image](https://hub.docker.com/_/openjdk/tags?page=1&name=17-jdk-alpine)
+- [Spring boot docker image](https://spring.io/guides/topicals/spring-boot-docker/)
+- [Welcome to Docker](https://github.com/docker/welcome-to-docker)
+- [docker-compose-spring-boot-mysql](https://github.com/bezkoder/docker-compose-spring-boot-mysql/tree/master)
 <!-- - [OAuth 2.0 Login](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html) -->
